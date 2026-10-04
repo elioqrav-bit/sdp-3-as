@@ -1,0 +1,53 @@
+diff --git a/src/Main.java b/src/Main.java
+index 3bcef88..05e2c64 100644
+--- a/src/Main.java
++++ b/src/Main.java
+@@ -1,3 +1,4 @@
++import bridge.AsciiRenderer;
+ import bridge.Circle;
+ import bridge.RasterRenderer;
+ import bridge.Renderer;
+@@ -5,7 +6,7 @@ import bridge.Shape;
+ import bridge.Square;
+ import bridge.VectorRenderer;
+ 
+-/** Client: runs the demonstration checks. */
++/** Client: runs the demonstration checks T1-T7. */
+ public class Main {
+ 
+     private static final int CIRCLE_RADIUS = 2;
+@@ -32,6 +33,10 @@ public class Main {
+         checkCombination("T4", newSquare(new RasterRenderer()), new RasterRenderer(),
+                 "RASTER square side=3 [pixel grid]");
+         checkRuntimeSwitch();
++        checkCombination("T6", newCircle(new AsciiRenderer()), new AsciiRenderer(),
++                "ASCII circle radius=2 ( o )");
++        checkCombination("T7", newSquare(new AsciiRenderer()), new AsciiRenderer(),
++                "ASCII square side=3 [###]");
+         printSummary();
+     }
+ 
+diff --git a/src/bridge/AsciiRenderer.java b/src/bridge/AsciiRenderer.java
+new file mode 100644
+index 0000000..fb794df
+--- /dev/null
++++ b/src/bridge/AsciiRenderer.java
+@@ -0,0 +1,17 @@
++package bridge;
++
++/** I3: describes shapes as ASCII art; added without touching existing code. */
++public class AsciiRenderer implements Renderer {
++
++    private static final String PREFIX = "ASCII";
++
++    @Override
++    public String drawCircle(int radius) {
++        return PREFIX + " circle radius=" + radius + " ( o )";
++    }
++
++    @Override
++    public String drawSquare(int side) {
++        return PREFIX + " square side=" + side + " [###]";
++    }
++}
+\ No newline at end of file
