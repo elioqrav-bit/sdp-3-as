@@ -1,3 +1,4 @@
+import bridge.AsciiRenderer;
 import bridge.Circle;
 import bridge.RasterRenderer;
 import bridge.Renderer;
@@ -5,7 +6,7 @@ import bridge.Shape;
 import bridge.Square;
 import bridge.VectorRenderer;
 
-/** Client: runs the demonstration checks. */
+/** Client: runs the demonstration checks T1-T7. */
 public class Main {
 
     private static final int CIRCLE_RADIUS = 2;
@@ -32,6 +33,10 @@ public class Main {
         checkCombination("T4", newSquare(new RasterRenderer()), new RasterRenderer(),
                 "RASTER square side=3 [pixel grid]");
         checkRuntimeSwitch();
+        checkCombination("T6", newCircle(new AsciiRenderer()), new AsciiRenderer(),
+                "ASCII circle radius=2 ( o )");
+        checkCombination("T7", newSquare(new AsciiRenderer()), new AsciiRenderer(),
+                "ASCII square side=3 [###]");
         printSummary();
     }
 
